@@ -1,0 +1,16 @@
+[Unit]
+# Service running on netflow collector
+Description=xenoeye
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+
+
+ExecStart=/usr/local/bin/xenoeye
+ExecStop=/bin/kill -15 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
