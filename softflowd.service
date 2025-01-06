@@ -1,4 +1,5 @@
 [Unit]
+# The service is designed to collect netflow statistics
 Description=Flow-based network traffic analyser
 Documentation=man:softflowd(8)
 
