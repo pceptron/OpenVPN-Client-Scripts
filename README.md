@@ -1,4 +1,4 @@
-# OpenVPN Client Connection Scripts
+# OpenVPN Client Scripts
 
 This script is designed to manage OpenVPN client connections by dynamically assigning IP addresses and pushing specific routing configurations based on user profiles. It is intended to be used as a client-connect script in an OpenVPN server setup.
 
