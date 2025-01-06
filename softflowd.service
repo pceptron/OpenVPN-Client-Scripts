@@ -1,0 +1,17 @@
+[Unit]
+Description=Flow-based network traffic analyser
+Documentation=man:softflowd(8)
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/local/sbin/softflowd -d -i tun0 -p /run/softflowd/default.pid -c /run/softflowd/default.ctl -m 8192 -n <COLLECTOR_ip>:<COLLECTOR_PORT> -v 5 -T full -s 1 -6 -c /var/run/softflowd.ctl
+ExecReload=/usr/local/sbin/softflowd -d -i tun0 -p /run/softflowd/default.pid -c /run/softflowd/default.ctl -m 8192 -n <COLLECTOR_ip>:<COLLECTOR_PORT> -v 5 -T full -s 1 -6 -c /var/run/softflowd.ctl
+Restart=on-failure
+RestartSec=5s
+RemainAfterExit=on
+
+[Install]
+WantedBy=multi-user.target
+
