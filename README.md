@@ -1,4 +1,4 @@
-# OpenVPN Client Connection Script
+# OpenVPN Client Connection Scripts
 
 This script is designed to manage OpenVPN client connections by dynamically assigning IP addresses and pushing specific routing configurations based on user profiles. It is intended to be used as a client-connect script in an OpenVPN server setup.
 
@@ -62,12 +62,15 @@ Logs are written to `/var/log/openvpn/openvpn_client_connects.log`. The log incl
 2. Place the script in the OpenVPN scripts directory:
    ```bash
    sudo cp on_connect.py /etc/openvpn/scripts/
+   sudo cp on_disconnect.py /etc/openvpn/scripts/
    sudo chmod +x /etc/openvpn/scripts/on_connect.py
+   sudo chmod +x /etc/openvpn/scripts/on_disconnect.py
    ```
 
 3. Configure OpenVPN to use the script as a client-connect script in your server configuration file:
    ```conf
    client-connect /etc/openvpn/scripts/on_connect.py
+   client-disconnect /etc/openvpn/scripts/on_disconnect.py
    ```
 
 ## License
