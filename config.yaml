@@ -1,0 +1,18 @@
+user1:
+  ip_address: 172.18.30.10
+  vpn_rights: profile1
+  vpn_logs: yes
+user2:
+  ip_address: 172.18.30.11
+  vpn_rights: default
+  vpn_logs: yes
+user3:
+  ip_address: 172.18.30.12
+  vpn_rights: reject
+  vpn_logs: yes
+user4:
+  ip_address: 172.18.30.13
+  vpn_rights: personal
+  push_file: subnets_user4
+  vpn_logs: yes
+
