@@ -7,7 +7,7 @@ import ipaddress
 import logging
 
 DIR = '/etc/openvpn/scripts'
-PUSH_IPTVP = '/configs/subnets_iptv+'
+PUSH_PROFILE1 = '/configs/subnets_profile1'
 PUSH_DEFAULT = '/configs/subnets_default'
 CONFIG_PATH = DIR + '/configs/config.yaml'
 LOG_FILE = '/var/log/openvpn/openvpn_client_connects.log'
@@ -50,14 +50,14 @@ def push_routes (user_name = 'default', config = 'NONE'):
        конфигурации пользователей хранятся в файле DIR+CONFIG_PATH.
        Cтруктура файла конфигураци представляет из себя yaml записи вида:
        user1:
-  	ip_address: 172.18.30.10
-  	vpn_rights: iptv+
+  	      ip_address: 172.18.30.10
+  	      vpn_rights: profile1
        user2:
         vpn_rights: default
        ...
        При появлении нового авторизованного пользовате, для которого нет конфигурации
        Создается новая шаблонная конфигурация. Пользователю присваивается ip address = 
-       mar(ip address) +1, Права устанавливаются в соответствии с профилем iptv+
+       max(ip address) +1, Права устанавливаются в соответствии с профилем profile1
        Обновленная конфигурация записывается в конфигурационный файл 
 
    """
@@ -66,9 +66,9 @@ def push_routes (user_name = 'default', config = 'NONE'):
       if 'vpn_rights' not in config[user_name]:
          raise KeyError(f"'vpn_rights' отсутствует у пользователя {user_name}")
       match config[user_name]['vpn_rights']:
-           case 'iptv+': # Выдаем в сорону клиента набор маршрутов для youtube, онлайн кино-сервисов и соц сетей.
+           case 'profile1': # Выдаем в сорону клиента набор маршрутов в соответствии с правилами profile1.
              # Выдаем директивы клиенту
-             output = read_routes(DIR + PUSH_IPTVP)
+             output = read_routes(DIR + PUSH_PROFILE1)
              # Выдаем адрес клиенту
              if config[user_name]['ip_address']:
                 output.append(f'ifconfig-push {config[user_name]["ip_address"]} 255.255.255.0')
