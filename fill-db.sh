@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configuration of rotation ofr netflow statistics
+# Configuration of rotation netflow statistics
 # More details here: https://github.com/vmxdev/xenoeye
 EXP_DIR="/var/lib/xenoeye/exp"
 FAIL_DIR="/var/lib/xenoeye/expfailed/"
